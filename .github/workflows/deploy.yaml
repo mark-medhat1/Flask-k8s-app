@@ -26,21 +26,21 @@ jobs:
                 docker build -t ${{ secrets.DOCKER_USERNAME }}/flask-app:latest .
                 docker push ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
 
-            - name: Set up kubectl
-              uses: azure/setup-kubectl@v3
-              with:
-                version: latest
+           # - name: Set up kubectl
+            #  uses: azure/setup-kubectl@v3
+             # with:
+              #  version: latest
 
-            - name: Set kubeconfig
-              run: |
-                mkdir -p ~/.kube
-                echo "${{ secrets.KUBECONFIG }}"> ~/.kube/config
+           # - name: Set kubeconfig
+            #  run: |
+             #   mkdir -p ~/.kube
+              #  echo "${{ secrets.KUBECONFIG }}"> ~/.kube/config
 
-            - name: Deploy to kuberenetes
-              run: |
-                kubectl apply -f flask-deployment.yaml
-                kubectl apply -f flask-service.yaml
+            #- name: Deploy to kuberenetes
+             # run: |
+              #  kubectl apply -f flask-deployment.yaml
+               # kubectl apply -f flask-service.yaml
 
-            - name: Force rollout
-              run: |
-                kubectl rollout restart deployment flask-app
+            #- name: Force rollout
+             # run: |
+              #  kubectl rollout restart deployment flask-app
