@@ -12,7 +12,7 @@ spec:
     protocol: TCP
     targetPort: 5000
   selector:
-    app: flask-service
+    app: flask-app
   type: NodePort
 status:
   loadBalancer: {}
