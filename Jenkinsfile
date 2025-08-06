@@ -37,6 +37,8 @@ pipeline {
                 withCredentials([file(credentialsId: 'kubeconfig-credentials-id', variable: 'KUBECONFIG_FILE')]) {
                     sh '''
                     export KUBECONFIG=$KUBECONFIG_FILE
+                    kubectl apply -f flask-deployment.yaml || true
+                    kubectl apply -f flask-service.yaml || true
                     kubectl set image deployment/flask-app flask-app-container=${IMAGE_NAME}:latest
                     '''
                 }
